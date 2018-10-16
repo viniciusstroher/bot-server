@@ -50,7 +50,4 @@ app.post('/contatos',function(req,res){
 // 	}
 // });
 
-http.createServer(function (req, res) {
-    // res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    // res.end();
-}).listen(8093);
+http.createServer(app).listen(8093);
