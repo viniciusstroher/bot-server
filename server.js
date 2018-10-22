@@ -23,6 +23,7 @@ var storage = multer.diskStorage({
 
 var upload 	= multer({storage:storage});
 app.post('/files',upload.single('object'),function (req, res, next){
+	console.log(upload);
 	res.send('Successfully uploaded files!');
 });
 
