@@ -8,13 +8,24 @@ var fs 	       = require('fs');
 var multer 	   = require('multer');
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
-
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'})); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: false,limit: '50mb' })); // support encoded bodies
 
 app.post('/contatos',function(req,res){
 	console.log(req.body);
+});
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './files-static/') //Destination folder
+  }
+});
+
+var upload 	= multer({storage:storage});
+app.post('/files',upload.single('object'),function(req,res){
+	
+	console.log(req.body);
+
 });
 
 // var storage = multer.diskStorage({
