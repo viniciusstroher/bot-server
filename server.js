@@ -22,10 +22,8 @@ var storage = multer.diskStorage({
 });
 
 var upload 	= multer({storage:storage});
-app.post('/files',upload.single('object'),function(req,res){
-	
-	console.log(req.body);
-
+app.post('/files',upload.single('object'),function (req, res, next){
+	res.send('Successfully uploaded ' + req.files.length + ' files!');
 });
 
 // var storage = multer.diskStorage({
